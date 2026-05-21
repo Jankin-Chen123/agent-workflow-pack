@@ -1,6 +1,6 @@
 # agent-workflow-pack 🚀
 
-面向 Codex 的项目工作流包，也可被 Claude Code、Claude Codex 等 Agent 开发工具参考使用。
+面向 Codex 的项目工作流包，也可被 Claude Code、Trae SOLO 等 Agent 开发工具参考使用。
 
 它不是一个业务项目模板，而是一套“让 Agent 像项目团队一样工作”的协作框架：先和用户充分讨论需求，再沉淀设计规范和开发计划，最后按可独立交付的 Part 逐步开发、验证和交付。
 
