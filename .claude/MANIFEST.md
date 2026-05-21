@@ -65,15 +65,28 @@ Removed intentionally:
 
 Reason: the `github` plugin already contains these GitHub operation skills, so standalone duplicates were removed from `.claude/skills`.
 
+## Templates
+
+项目产物模板位于 `.claude/templates/project`。
+
+- `00-requirements.template.md`: requirements document template
+- `01-design-spec.template.md`: design specification and design artifact template
+- `02-development-plan.template.md`: development plan and Part breakdown template
+- `part.template.md`: independent Part execution record template
+
+Agents should copy these templates into `projects/<project-slug>/` and fill them through user collaboration.
+
 ## Maintenance Rules
 
 1. Prefer marketplace, curated, or well-used third-party skills over custom local skills.
 2. If a plugin already provides a skill, do not duplicate that skill in `.claude/skills`.
-3. After adding or removing skills/plugins, update:
+3. Every generated project must live under `projects/<project-slug>/` and keep requirements, design specification, development plan, and Part documents as source-of-truth artifacts.
+4. Do not start production code for a generated project until `00-requirements.md`, `01-design-spec.md`, and `02-development-plan.md` exist and have been accepted by the user.
+5. After adding or removing skills/plugins, update:
    - `.claude/CLAUDE.md`
    - `.claude/agents/README.md`
    - `.claude/skills/README.md`
    - `.claude/plugins/README.md`
    - `README.md`
-4. Verify every project-doc reference resolves to an installed skill, plugin, or Agent.
-5. Restart Codex after installing new skills or plugins so the runtime can discover them.
+6. Verify every project-doc reference resolves to an installed skill, plugin, Agent, or documented template path.
+7. Restart Codex after installing new skills or plugins so the runtime can discover them.
