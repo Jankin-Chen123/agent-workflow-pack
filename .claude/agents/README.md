@@ -21,3 +21,21 @@
 ## Routing Rule
 
 先由 `.claude/CLAUDE.md` 判断任务阶段，再选择一个主责岗位。跨岗位任务由 `solution-architect` 拆解后再分配；范围和文档类任务由 `product-docs-lead` 牵头。
+
+## Visibility Rule
+
+每个子 Agent 开始工作、切换阶段、调用关键 skill/plugin、执行开发、验证或部署时，都必须向用户说明：
+
+- 当前 Agent
+- 当前工作
+- 使用的 skill/plugin 以及原因
+- 当前正在更新或产出的文件
+
+推荐格式：
+
+```text
+当前 Agent：implementation-engineer
+当前工作：实现 Part 003 的前端交互
+使用能力：ui-ux-pro-max（UI/UX 检查），playwright（浏览器验证）
+当前产物：projects/<project-slug>/parts/part-003-frontend-flow.md
+```

@@ -76,17 +76,29 @@ Reason: the `github` plugin already contains these GitHub operation skills, so s
 
 Agents should copy these templates into `projects/<project-slug>/` and fill them through user collaboration.
 
+## Memory
+
+项目级记忆位于 `.claude/memory`。
+
+- `USER_PREFERENCES.md`: durable user preferences and communication defaults
+- `AUTOMATION_RULES.md`: repeatable workflows that should run without repeated reminders
+- `SELF_UPGRADE_LOG.md`: missing capabilities, installed skills/plugins, and verification evidence
+
+Agents must read this directory at startup and update it when the user creates a durable preference or when the workflow upgrades itself.
+
 ## Maintenance Rules
 
 1. Prefer marketplace, curated, or well-used third-party skills over custom local skills.
 2. If a plugin already provides a skill, do not duplicate that skill in `.claude/skills`.
 3. Every generated project must live under `projects/<project-slug>/` and keep requirements, design specification, development plan, and Part documents as source-of-truth artifacts.
 4. Do not start production code for a generated project until `00-requirements.md`, `01-design-spec.md`, and `02-development-plan.md` exist and have been accepted by the user.
-5. After adding or removing skills/plugins, update:
+5. Every major user-facing update should disclose current Agent, current work, used skills/plugins, and current artifact.
+6. When missing capabilities are discovered, follow the Self-Upgrade Protocol in `.claude/CLAUDE.md`.
+7. After adding or removing skills/plugins, update:
    - `.claude/CLAUDE.md`
    - `.claude/agents/README.md`
    - `.claude/skills/README.md`
    - `.claude/plugins/README.md`
    - `README.md`
-6. Verify every project-doc reference resolves to an installed skill, plugin, Agent, or documented template path.
-7. Restart Codex after installing new skills or plugins so the runtime can discover them.
+8. Verify every project-doc reference resolves to an installed skill, plugin, Agent, memory file, or documented template path.
+9. Restart Codex after installing new skills or plugins so the runtime can discover them.

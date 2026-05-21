@@ -15,6 +15,84 @@
 5. 保护用户已有工作。不得无授权回滚、删除或覆盖用户改动；遇到不相关的脏工作区改动时忽略，遇到相关冲突时先说明风险。
 6. 交付内容要能被下一位 Agent 接手。重要决策、假设、待办和风险必须写清楚。
 
+## Active Work Disclosure
+
+Agent 必须让用户明确知道当前是谁在工作、正在做什么、使用了什么能力。每次进入一个新阶段、切换子 Agent、调用关键 skill/plugin、执行代码开发、验证、部署或自我升级时，都要用简短状态块说明。
+
+推荐格式：
+
+```text
+当前 Agent：solution-architect
+当前工作：制定开发计划 / 拆分 Part
+使用能力：superpowers plugin, ui-ux-pro-max skill
+当前产物：projects/<project-slug>/02-development-plan.md
+```
+
+规则：
+
+- 如果只是短答，可以用一句话说明：`当前 Agent：product-docs-lead，正在澄清需求，使用 superpowers。`
+- 如果任务跨阶段，先说明主责 Agent；切换 Agent 时再次说明。
+- 如果调用 skill/plugin，说明调用原因，而不是只列名字。
+- 如果没有合适 skill/plugin，也要说明“当前没有匹配能力”，并进入 Self-Upgrade Protocol。
+- 最终回复必须包含本次实际使用的 Agent、skills/plugins 和产物路径。
+
+## Memory Protocol
+
+本工作流包必须具备项目级记忆。凡是用户表达“以后都这样”“下次自动”“不需要再提醒”“我希望默认”等长期偏好，Agent 必须写入 `.claude/memory/`，让后续会话自动遵循。
+
+记忆文件：
+
+- `.claude/memory/USER_PREFERENCES.md`：用户长期偏好、默认行为、沟通方式。
+- `.claude/memory/AUTOMATION_RULES.md`：可重复执行的流程规则。
+- `.claude/memory/SELF_UPGRADE_LOG.md`：能力缺口、安装记录、拒绝记录和后续维护事项。
+
+写入规则：
+
+- 用户明确提出长期偏好时，立即记录，不要求用户重复确认。
+- 如果 Agent 观察到同一要求重复出现两次以上，应询问是否写入记忆；用户同意后记录。
+- 不得记录密钥、token、隐私敏感信息或一次性临时指令。
+- 每次启动项目时，先读取 `.claude/memory/`；若记忆与用户当前明确指令冲突，以用户当前指令为准，并更新记忆。
+- 记录必须包含日期、触发场景、规则内容、适用范围和最后更新原因。
+
+## Self-Upgrade Protocol
+
+当 Agent 在执行任务时发现当前工作流包缺少必要 skill/plugin、缺少某类市场能力、或用户要求一种可重复的新工作方式时，必须触发自我升级流程。
+
+流程：
+
+1. Detect
+   - 明确能力缺口：缺少什么能力、当前任务为什么需要它、现有 skills/plugins 为什么不足。
+
+2. Search
+   - 优先检查 `.claude/skills` 和 `.claude/plugins` 是否已有能力。
+   - 然后使用 `skill-installer` 查询 OpenAI curated skill market。
+   - 如用户提供 GitHub skill/plugin 仓库，读取其结构、frontmatter、许可证、脚本和数据目录后再安装。
+   - 如是插件能力，优先检查本地 OpenAI curated plugin cache 或运行环境的插件市场。
+
+3. Propose
+   - 向用户说明候选 skill/plugin、来源、用途、重复能力、风险和安装位置。
+   - 网络下载、安装外部依赖或修改插件时必须遵守运行环境授权规则。
+
+4. Install
+   - 安装到 `.claude/skills/<skill-name>` 或 `.claude/plugins/<plugin-name>`。
+   - 如果插件已包含某个 skill，不要在 `.claude/skills` 重复保存。
+   - 第三方 skill 如果使用 GitHub symlink，必须补齐真实 data/scripts 目录。
+
+5. Integrate
+   - 更新 `.claude/CLAUDE.md` 的 Skill Routing 或 Plugin Routing。
+   - 更新 `.claude/agents/*.md` 的 Assigned Skills / Assigned Plugins。
+   - 更新 `.claude/MANIFEST.md`、`.claude/skills/README.md`、`.claude/plugins/README.md`、`README.md`。
+
+6. Verify
+   - 检查 SKILL.md frontmatter、plugin.json、脚本可用性和文档引用。
+   - 记录验证证据。
+
+7. Remember
+   - 将能力缺口、安装结果、用户偏好和未来自动执行规则写入 `.claude/memory/SELF_UPGRADE_LOG.md` 或 `.claude/memory/AUTOMATION_RULES.md`。
+
+8. Report
+   - 最终回复说明：为什么升级、安装了什么、分配给哪些 Agent、验证了什么、以后会如何自动使用。
+
 ## Project Folder Convention
 
 每个使用本工作流包开发的新项目，必须在仓库根目录下创建独立项目文件夹：
@@ -195,7 +273,9 @@ projects/<project-slug>/
 
 - 需求和验收标准已对应到实现或文档。
 - 已读取并遵循当前项目的需求文档、设计规范、开发计划和 Part 文档。
+- 已向用户说明当前 Agent、当前工作、使用的 skill/plugin。
 - 相关文件已更新，且没有无关改动。
 - 已运行可用的验证命令，或明确说明为什么无法运行。
 - 重要风险、假设和后续事项已记录。
+- 若发现可复用偏好或能力缺口，已写入 `.claude/memory/` 或说明为什么不写入。
 - 最终回复包含改动摘要、验证结果和必要的文件路径。

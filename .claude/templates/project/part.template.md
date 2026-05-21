@@ -9,6 +9,17 @@
 - Created:
 - Last updated:
 
+## Active Work Disclosure
+
+Use this block when starting or updating this Part:
+
+```text
+当前 Agent：
+当前工作：
+使用能力：
+当前产物：
+```
+
 ## Source Of Truth
 
 Before starting, read:
@@ -46,6 +57,12 @@ Describe the specific outcome this Part must deliver.
 ## Implementation Notes
 
 - 
+
+## Skills And Plugins Used
+
+| Capability | Why It Was Used | Evidence |
+| --- | --- | --- |
+|  |  |  |
 
 ## Acceptance Criteria
 
