@@ -24,4 +24,4 @@
 
 ## Usage Rule
 
-先使用能描述当前阶段的 skill；如果任务跨阶段，按 `.claude/CLAUDE.md` 的默认项目流程推进。
+先使用能描述当前阶段的 skill；如果任务跨阶段，按 `AGENTS.md` 的默认项目流程推进。

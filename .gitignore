@@ -10,6 +10,7 @@ Thumbs.db
 !.env.example
 
 # Local user memory and self-upgrade records
+.agents/memory/
 .claude/memory/
 
 # Dependency/build outputs

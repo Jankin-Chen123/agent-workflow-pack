@@ -19,7 +19,7 @@
 
 ## Development Principles
 
-- Follow `.claude/CLAUDE.md`.
+- Follow `AGENTS.md`.
 - Read requirements, design specification, development plan, and current Part document before coding.
 - Keep Part ownership clear and avoid shared write conflicts.
 - Record verification evidence for every completed Part.

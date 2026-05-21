@@ -27,7 +27,7 @@ Before starting, read:
 - `../00-requirements.md`
 - `../01-design-spec.md`
 - `../02-development-plan.md`
-- `.claude/CLAUDE.md`
+- `AGENTS.md`
 
 ## Objective
 

@@ -1,6 +1,6 @@
 # Agents
 
-本目录把 `.claude` 工作流组织成少量复合项目岗位。每个文件都是一个可由 Agent 软件加载或参考的角色定义。
+本目录把 `.agents` 工作流组织成少量复合项目岗位。每个文件都是一个可由 Agent 软件加载或参考的角色定义。
 
 ## Roles
 
@@ -20,7 +20,7 @@
 
 ## Routing Rule
 
-先由 `.claude/CLAUDE.md` 判断任务阶段，再选择一个主责岗位。跨岗位任务由 `solution-architect` 拆解后再分配；范围和文档类任务由 `product-docs-lead` 牵头。
+先由 `AGENTS.md` 判断任务阶段，再选择一个主责岗位。跨岗位任务由 `solution-architect` 拆解后再分配；范围和文档类任务由 `product-docs-lead` 牵头。
 
 ## Visibility Rule
 
