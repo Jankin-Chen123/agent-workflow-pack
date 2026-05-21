@@ -207,7 +207,7 @@ projects/<project-slug>/
 
 - 进入正式代码开发前，必须先完成需求文档、设计规范和开发计划。
 - 后续所有任务都必须读取并遵循项目文件夹中的核心产物。
-- 每次进入新阶段、切换 Agent、调用关键能力或执行开发/验证/部署时，都要说明当前 Agent、当前工作和使用的 skill/plugin。
+- 只在关键步骤说明当前 Agent、当前工作、使用的 skill/plugin 和当前产物，避免普通短答被状态块打断。
 - 发现能力缺口时，触发自我升级流程：搜索、提议、安装、集成、验证、记录。
 - 用户提出“以后默认这样做”的偏好时，写入本地 `.claude/memory/`。
 - `.claude/memory/` 是用户私有记忆目录，必须被 `.gitignore` 忽略，不能提交或推送到 GitHub。
@@ -222,7 +222,7 @@ projects/<project-slug>/
 1. 读取 `.claude/CLAUDE.md`。
 2. 读取本地 `.claude/memory/` 中的长期偏好和自动化规则；如果目录不存在，从 `.claude/templates/memory/` 创建。
 3. 根据任务类型选择 `.claude/agents` 中的主责角色。
-4. 向用户展示当前 Agent、当前工作、使用能力和当前产物。
+4. 在进入新阶段、切换 Agent、调用关键能力或执行开发/验证/部署时，向用户展示当前 Agent、当前工作、使用能力和当前产物。
 5. 使用 `.claude/plugins` 和 `.claude/skills` 中的成熟能力。
 6. 复制 `.claude/templates/project/` 中的模板到 `projects/<project-slug>/`。
 7. 按生命周期逐步推进，不跳过阶段门禁。

@@ -11,7 +11,7 @@
 
 ## Active Work Disclosure
 
-Use this block when starting or updating this Part:
+Use this block only at key moments such as starting the Part, changing owner, invoking important skills/plugins, completing implementation, running verification, or handing off the Part:
 
 ```text
 当前 Agent：
