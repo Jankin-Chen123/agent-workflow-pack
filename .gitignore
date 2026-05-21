@@ -9,6 +9,9 @@ Thumbs.db
 .env.*
 !.env.example
 
+# Local user memory and self-upgrade records
+.claude/memory/
+
 # Dependency/build outputs
 node_modules/
 dist/

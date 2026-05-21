@@ -76,15 +76,19 @@ Reason: the `github` plugin already contains these GitHub operation skills, so s
 
 Agents should copy these templates into `projects/<project-slug>/` and fill them through user collaboration.
 
-## Memory
+## Local Memory
 
-项目级记忆位于 `.claude/memory`。
+本地用户记忆位于 `.claude/memory`。该目录包含用户偏好、对话中沉淀的重复流程、自我升级日志和本地自动化规则，属于用户私有状态。
+
+`.claude/memory` 必须被 `.gitignore` 忽略，不能提交或推送到 GitHub。
 
 - `USER_PREFERENCES.md`: durable user preferences and communication defaults
 - `AUTOMATION_RULES.md`: repeatable workflows that should run without repeated reminders
 - `SELF_UPGRADE_LOG.md`: missing capabilities, installed skills/plugins, and verification evidence
 
 Agents must read this directory at startup and update it when the user creates a durable preference or when the workflow upgrades itself.
+
+可提交的记忆模板位于 `.claude/templates/memory`。如果 `.claude/memory` 不存在，Agent 应复制模板并在本地填充。
 
 ## Maintenance Rules
 
@@ -100,5 +104,6 @@ Agents must read this directory at startup and update it when the user creates a
    - `.claude/skills/README.md`
    - `.claude/plugins/README.md`
    - `README.md`
-8. Verify every project-doc reference resolves to an installed skill, plugin, Agent, memory file, or documented template path.
-9. Restart Codex after installing new skills or plugins so the runtime can discover them.
+8. Verify every project-doc reference resolves to an installed skill, plugin, Agent, local memory path, or documented template path.
+9. Before every commit, verify `.claude/memory` is not tracked by Git.
+10. Restart Codex after installing new skills or plugins so the runtime can discover them.
