@@ -1,0 +1,29 @@
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Dependency/build outputs
+node_modules/
+dist/
+build/
+.next/
+.turbo/
+.cache/
+coverage/
+
+# Python local artifacts
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Temporary workspace clones/downloads
+.tmp-*/
+tmp-*/
