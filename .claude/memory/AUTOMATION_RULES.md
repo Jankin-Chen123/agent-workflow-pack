@@ -6,7 +6,7 @@
 
 ### 1. Active Work Disclosure
 
-When starting a new phase, switching Agent role, invoking important skills/plugins, implementing code, verifying behavior, deploying, or upgrading workflow capabilities, show a concise status block:
+Every user-facing response must identify the active Agent, what it is doing, and what skill/plugin capability is being used. When starting a new phase, switching Agent role, invoking important skills/plugins, implementing code, verifying behavior, deploying, or upgrading workflow capabilities, show a full status block:
 
 ```text
 当前 Agent：<agent-name>
@@ -14,6 +14,8 @@ When starting a new phase, switching Agent role, invoking important skills/plugi
 使用能力：<skills/plugins and why>
 当前产物：<file or artifact path, if any>
 ```
+
+For very short replies, a one-line disclosure is acceptable, but it must still include Agent, work, and capability.
 
 ### 2. Missing Capability Handling
 
